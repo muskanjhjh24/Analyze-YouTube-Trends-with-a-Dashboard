@@ -1,0 +1,69 @@
+---
+title: "dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+Column {data-width="400"}
+
+library(flexdashboard)
+library(dplyr)
+library(plotly)
+library(tidyr)
+
+video_stats <- read.delim("videos-stats.csv", sep=",", strip.white=T)
+video_stats <- video_stats %>%
+  drop_na()
+video_stats <- video_stats %>%
+  mutate(LikesPer1k = round(Likes/(Views/1000), 2),
+         CommentsPer1k = round(Comments/(Views/1000), 2),
+         TitleLen = nchar(Title))
+video_stats <- video_stats %>%
+  mutate(PubYear = as.factor(substr(Published.At,1,4)),
+         Published.At = as.POSIXct(Published.At, format="%Y-%m-%d"))
+```
+
+### Chart C
+
+```{r}
+Column {data-width="410"}
+
+library(flexdashboard)
+library(dplyr)
+library(plotly)
+library(tidyr)
+
+video_stats <- read.delim("videos-stats.csv", sep=",", strip.white=T)
+video_stats <- video_stats %>%
+  drop_na()
+video_stats <- video_stats %>%
+  mutate(LikesPer1k = round(Likes/(Views/1000), 2),
+         CommentsPer1k = round(Comments/(Views/1000), 2),
+         TitleLen = nchar(Title))
+video_stats <- video_stats %>%
+  mutate(PubYear = as.factor(substr(Published.At,1,4)),
+         Published.At = as.POSIXct(Published.At, format="%Y-%m-%d"))
+```
+
